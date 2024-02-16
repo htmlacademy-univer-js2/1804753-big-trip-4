@@ -1,5 +1,4 @@
 import SortView from '../view/sort-view.js';
-import CreatePointView from '../view/create-point-view.js';
 import EditPointView from '../view/edit-point-view.js';
 import PointView from '../view/point-view.js';
 import TripView from '../view/point-list-view.js';
@@ -19,7 +18,5 @@ export default class TripPresenter {
         for (let i = 0; i < 3; i++) {
             render(new PointView(), this.pointList.getElement());
         }
-
-        render(new CreatePointView(), this.pointList.getElement());
     }
 }
