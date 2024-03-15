@@ -3,18 +3,18 @@ const DESTINATION_COUNT = 5;
 const POINT_COUNT = 5;
 
 const CITIES = [
-    'Chamonix',
-    'Geneva',
-    'Amsterdam',
-    'Helsinki',
-    'Oslo',
-    'Kopenhagen',
-    'Den Haag',
-    'Rotterdam',
-    'Saint Petersburg',
-    'Moscow',
-    'Sochi',
-    'Tokio',
+  'Chamonix',
+  'Geneva',
+  'Amsterdam',
+  'Helsinki',
+  'Oslo',
+  'Kopenhagen',
+  'Den Haag',
+  'Rotterdam',
+  'Saint Petersburg',
+  'Moscow',
+  'Sochi',
+  'Tokio',
 ];
   
 const OFFERS = [
