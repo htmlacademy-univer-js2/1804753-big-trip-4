@@ -1,8 +1,14 @@
 import AbstractView from '../framework/view/abstract-view.js';
-import { formatStringToDateTime, formatStringToShortDate, formatStringToTime, getPointDuration} from '../utils.js';
+import { formatStringToDateTime, formatStringToShortDate, formatStringToTime, getPointDuration } from '../utils.js';
 
 const createPointOffersTemplate = ({pointOffers}) => {
-    const offerItems = pointOffers.map(offer => {
+    const selectedOffers = pointOffers.filter((offer) => offer.included);
+
+    if (selectedOffers.length === 0) {
+        return '';
+    }
+
+    const offerItems = selectedOffers.map(offer => {
         return (
             `<li class="event__offer">
                 <span class="event__offer-title">${offer.title}</span>
@@ -16,9 +22,9 @@ const createPointOffersTemplate = ({pointOffers}) => {
 }
 
 const createPointTemplate = ({point, pointDestination, pointOffers}) => {
-    const { basePrice, dateFrom, dateTo, offers, isFavorite, type } = point;
+    const { basePrice, dateFrom, dateTo, isFavorite, type } = point;
     const favoriteClassName = isFavorite ? 'event__favorite-btn--active' : '';
-
+    
     return (
         `<li class="trip-events__item">
             <div class="event">
