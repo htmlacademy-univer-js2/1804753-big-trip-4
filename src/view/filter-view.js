@@ -6,7 +6,8 @@ const createFilterItemsTemplate = ({filters}) => {
         return (
             `<div class="trip-filters__filter">
                 <input id="filter-${filter.type}" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="${filter.type}"
-                ${(filter.hasPoints) ? '' : 'disabled'}>
+                ${(filter.isChecked) ? 'checked' : ''}
+                ${(filter.isDisabled) ? 'disabled' : ''}>
                 <label class="trip-filters__filter-label" for="filter-${filter.type}">${capitalize(filter.type)}</label>
             </div>`
         )
@@ -25,11 +26,15 @@ const createFilterTemplate = ({filters}) => {
 }
 
 export default class FilterView extends AbstractView {
-    #filters = [];
+    #filters = null;
+    #handleFilterTypeChange = null;
 
-    constructor(filters) {
+    constructor({items, onItemChange}) {
         super();
-        this.#filters = filters;
+        this.#filters = items;
+        this.#handleFilterTypeChange = onItemChange;
+
+        this.element.addEventListener('change', this.#filterTypeChangeHandler);
     }
 
     get template() {
@@ -38,4 +43,8 @@ export default class FilterView extends AbstractView {
         });
     }
 
+    #filterTypeChangeHandler = (evt) => {
+        evt.preventDefault();
+        this.#handleFilterTypeChange(evt.target.value);
+    };
 }
