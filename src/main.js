@@ -23,35 +23,35 @@ const pointsApiService = new PointsApiService(END_POINT, AUTHORIZATION);
 const destinationsModel = new DestinationsModel(pointsApiService);
 const offersModel = new OffersModel(pointsApiService);
 const pointsModel = new PointsModel({
-    service: pointsApiService,
-    destinationsModel,
-    offersModel
+  service: pointsApiService,
+  destinationsModel,
+  offersModel
 });
 const filterModel = new FilterModel();
 
 const newPointButtonPresenter = new NewPointButtonPresenter({
-    container: tripInfoElement
+  container: tripInfoElement
 });
 
 const filterPresenter = new FilterPresenter({
-    container: filterElement,
-    pointsModel,
-    filterModel
+  container: filterElement,
+  pointsModel,
+  filterModel
 });
 
 const tripPresenter = new TripPresenter({
-    tripContainer: eventListElement,
-    destinationsModel,
-    offersModel,
-    pointsModel,
-    filterModel,
-    newPointButtonPresenter: newPointButtonPresenter
+  tripContainer: eventListElement,
+  destinationsModel,
+  offersModel,
+  pointsModel,
+  filterModel,
+  newPointButtonPresenter: newPointButtonPresenter
 });
 
 render(new TripInfoView(), tripInfoElement, RenderPosition.AFTERBEGIN);
 
 newPointButtonPresenter.init({
-    onButtonClick: tripPresenter.newPointButtonClickHandler
+  onButtonClick: tripPresenter.newPointButtonClickHandler
 });
 
 filterPresenter.init();
