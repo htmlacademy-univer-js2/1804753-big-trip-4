@@ -157,8 +157,11 @@ export default class TripPresenter {
       remove(this.#sortComponent);
       this.#sortComponent = null;
       this.#renderLoading({isLoading, isLoadingError});
+      this.#newPointButtonPresenter.disableButton();
       return;
     }
+
+    this.#newPointButtonPresenter.enableButton();
 
     if (this.points.length === 0 && !this.#isCreating) {
       this.#renderMessage();
