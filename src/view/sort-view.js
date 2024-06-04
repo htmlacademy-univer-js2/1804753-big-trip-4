@@ -1,9 +1,8 @@
 import AbstractView from '../framework/view/abstract-view.js';
 
 const createSortItemsTemplate = ({items}) => {
-    const sortItems = items.map(sortItem => {
-        return (
-            `<div class="trip-sort__item  trip-sort__item--${sortItem.type}">
+  const sortItems = items.map((sortItem) => (
+    `<div class="trip-sort__item  trip-sort__item--${sortItem.type}">
             <input
               id="sort-${sortItem.type}"
               class="trip-sort__input  visually-hidden"
@@ -18,40 +17,37 @@ const createSortItemsTemplate = ({items}) => {
               class="trip-sort__btn"
               for="sort-${sortItem.type}">${sortItem.type}</label>
           </div>`
-        )
-    }).join('');
+  )).join('');
 
-    return sortItems;
-}
+  return sortItems;
+};
 
-const createSortTemplate = ({items}) => {
-    return (
-        `<form class="trip-events__trip-sort  trip-sort" action="#" method="get">
+const createSortTemplate = ({items}) => (
+  `<form class="trip-events__trip-sort  trip-sort" action="#" method="get">
             ${createSortItemsTemplate({items})}
         </form>`
-    );
-}
+);
 
 export default class SortView extends AbstractView {
-    #items = null;
-    #handleSortTypeChange = null;
+  #items = null;
+  #handleSortTypeChange = null;
 
-    constructor({items, onItemChange}) {
-        super();
-        this.#items = items;
-        this.#handleSortTypeChange = onItemChange;
-        
-        this.element.addEventListener('change', this.#sortTypeChangeHandler);
-    }
+  constructor({items, onItemChange}) {
+    super();
+    this.#items = items;
+    this.#handleSortTypeChange = onItemChange;
 
-    get template() {
-        return createSortTemplate({
-            items: this.#items
-        });
-    }
+    this.element.addEventListener('change', this.#sortTypeChangeHandler);
+  }
 
-    #sortTypeChangeHandler = (evt) => {
-        evt.preventDefault();
-        this.#handleSortTypeChange(evt.target.dataset.sortType);
-    };
+  get template() {
+    return createSortTemplate({
+      items: this.#items
+    });
+  }
+
+  #sortTypeChangeHandler = (evt) => {
+    evt.preventDefault();
+    this.#handleSortTypeChange(evt.target.dataset.sortType);
+  };
 }
